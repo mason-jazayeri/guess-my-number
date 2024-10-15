@@ -31,7 +31,12 @@ guessInputElement.addEventListener('input', function (event) {
 checkButton.addEventListener('click', () => {
   const userInput = Number(guessInputElement.value);
 
-  if (userInput >= min && userInput <= max && userInput === myNumber) {
+  if (
+    userInput >= min &&
+    userInput <= max &&
+    userInput === myNumber &&
+    score !== 0
+  ) {
     questionMarkElement.innerHTML = myNumber;
     resultElement.innerHTML = '🎉 Correct number!';
     // Changing the style of an element: Method 1 with style property
@@ -41,7 +46,12 @@ checkButton.addEventListener('click', () => {
       highscore = score;
       highscoreElement.textContent = highscore;
     }
-  } else if (userInput >= min && userInput <= max && userInput < myNumber) {
+  } else if (
+    userInput >= min &&
+    userInput <= max &&
+    userInput < myNumber &&
+    score !== 0
+  ) {
     resultElement.innerHTML = '📉 Too low!';
     // Note the difference between --score and score--
     scoreElement.innerHTML = --score;
@@ -50,15 +60,19 @@ checkButton.addEventListener('click', () => {
     userInput >= min &&
     userInput <= max &&
     userInput !== myNumber &&
-    userInput > myNumber
+    userInput > myNumber &&
+    score !== 0
   ) {
     resultElement.innerHTML = '📈 Too high!';
     scoreElement.innerHTML = --score;
     // focus() method for focusing on input element
     guessInputElement.focus();
-  } else if (guessInputElement.value === '') {
+  } else if (guessInputElement.value === '' && score !== 0) {
     resultElement.innerHTML = '⛔ No entry!';
     guessInputElement.focus();
+  } else if (score === 0) {
+    resultElement.innerHTML = '😞 You lost!';
+    document.body.style.backgroundColor = '#ff0000';
   } else {
     resultElement.innerHTML = '⛔ Not in range!';
     guessInputElement.focus();
