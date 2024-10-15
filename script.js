@@ -31,7 +31,7 @@ checkButton.addEventListener('click', () => {
     questionMarkElement.innerHTML = myNumber;
     resultElement.innerHTML = '🎉 Correct number!';
     document.body.style.backgroundColor = '#60b347';
-    if (highscore < score) {
+    if (score > highscore) {
       highscore = score;
       highscoreElement.textContent = highscore;
     }
