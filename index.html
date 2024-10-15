@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Having fonts in our project - Method 1 - Step 1 -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,8 +13,9 @@
     <link rel="stylesheet" href="style.css" />
     <title>Guess My Number!</title>
   </head>
+  <!-- Using some semantic html elements; header, main, section. -->
   <body>
-    <div class="site-wrapper">
+    <div class="page-wrapper">
       <header>
         <div class="container">
           <div class="header-container">
@@ -27,11 +29,17 @@
         <div class="container">
           <div class="main-container">
             <section class="left">
+              <!-- input element with the type of number has these characteristics:
+              1) Allows user to enter just numbers, -, ., and e (in scientific notation for example 2e3).
+                 If user enters invalid inputs like just -, just ., just e, e2, 2e it returns an empty string ''.
+              2) The return value is in the type of string. It often should convert to the type of Number.
+              3) Empty input returns ''. -->
               <input type="number" class="guess">
               <button class="btn check">Check!</button>
             </section>
             <sectioin class="right">
                 <p class="result">Start guessing...</p>
+                <!-- This form is a goode style for the combination of labels and values. -->
                 <div class="score-label">💯 Score: <span class="score">20</span></div>
                 <div class="highscore-label">💯 Highscore: <span class="highscore">0</span></div>
             </sectioin>

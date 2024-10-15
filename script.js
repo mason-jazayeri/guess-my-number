@@ -20,6 +20,10 @@ const highscoreElement = document.querySelector('.highscore');
 const checkButton = document.querySelector('.check');
 const againButton = document.querySelector('.again');
 
+// input event:
+// It fires immediately every time user makes a change in input value.
+// replace method:
+// replace method on value of input replaces the first argument with the second.
 guessInputElement.addEventListener('input', function (event) {
   this.value = this.value.replace(/[^0-9]/g, '');
 });
@@ -30,19 +34,18 @@ checkButton.addEventListener('click', () => {
   if (userInput >= min && userInput <= max && userInput === myNumber) {
     questionMarkElement.innerHTML = myNumber;
     resultElement.innerHTML = '🎉 Correct number!';
+    // Changing the style of an element: Method 1 with style property
+    // Changing the style of an element: Method 2 by defining a new class in css and changing the class of the element
     document.body.style.backgroundColor = '#60b347';
     if (score > highscore) {
       highscore = score;
       highscoreElement.textContent = highscore;
     }
-  } else if (
-    userInput >= min &&
-    userInput <= max &&
-    userInput !== myNumber &&
-    userInput < myNumber
-  ) {
+  } else if (userInput >= min && userInput <= max && userInput < myNumber) {
     resultElement.innerHTML = '📉 Too low!';
+    // Note the difference between --score and score--
     scoreElement.innerHTML = --score;
+    guessInputElement.focus();
   } else if (
     userInput >= min &&
     userInput <= max &&
@@ -51,10 +54,14 @@ checkButton.addEventListener('click', () => {
   ) {
     resultElement.innerHTML = '📈 Too high!';
     scoreElement.innerHTML = --score;
+    // focus() method for focusing on input element
+    guessInputElement.focus();
   } else if (guessInputElement.value === '') {
     resultElement.innerHTML = '⛔ No entry!';
+    guessInputElement.focus();
   } else {
     resultElement.innerHTML = '⛔ Not in range!';
+    guessInputElement.focus();
   }
 });
 
@@ -64,6 +71,7 @@ againButton.addEventListener('click', () => {
   document.body.style.backgroundColor = '#222';
   questionMarkElement.innerHTML = '?';
   guessInputElement.value = '';
+  guessInputElement.focus();
   resultElement.innerHTML = 'Start guessing...';
   scoreElement.innerHTML = '20';
 });

@@ -1,10 +1,13 @@
+/* Reset & usual html and body css codes - Method 1 */
 * {
   margin: 0;
   padding: 0;
+  /* Note that box-sizing here is inherit */
   box-sizing: inherit;
 }
 
 html {
+  /* It would be better to give font-size and box-sizing to html selector */
   font-size: 62.5%;
   box-sizing: border-box;
 }
@@ -12,17 +15,23 @@ html {
 body {
   background-color: #222;
   color: #eee;
+  /* Having fonts in our project - Method 1 - Step 2 */
+  /* It would be better to give font-family,weight,style to body selector */
   font-family: 'Press Start 2P', sans-serif;
   font-weight: 400;
   font-style: normal;
   /* background-color: #60b347; */
 }
 
+/* It would be better to write all the sizes in rem. */
+
 .container {
   padding: 0 2rem;
 }
 
+/* Should define font-family,weight,style,size,... for buttons seperately from all the document */
 .btn {
+  /* Note the border: none; */
   border: none;
   font-family: inherit;
   font-weight: inherit;
@@ -37,6 +46,7 @@ header {
   border-bottom: 1rem solid #eee;
 }
 
+/* Note that for the layout of the header-container, we used position properties */
 .header-container {
   position: relative;
   height: 24rem;
@@ -57,6 +67,7 @@ header {
 
 .header-container h1 {
   position: absolute;
+  /* Centering an element: Using absolute position with transform, translate. */
   left: 50%;
   transform: translate(-50%, -50%);
   top: 50%;
@@ -64,11 +75,13 @@ header {
 }
 
 .header-container .question-mark {
+  /* Note that how we centered the question-mark div. */
   position: absolute;
   left: 50%;
-  transform: translate(-50%, 50%);
   bottom: 0;
+  transform: translate(-50%, 50%);
   padding: 0 5rem;
+  /* Note that how we centered the content of question-mark vertically. */
   height: 12rem;
   line-height: 12rem;
   text-align: center;
@@ -91,14 +104,16 @@ header {
 }
 
 .main-container .left input {
+  /* Note outline: none; and border: ...; to remove the default border of the input and customize it */
   outline: none;
+  border: 0.5rem solid #eee;
+  /* Should define font-family,weight,style,size,... for inputs seperately from all the document */
   font-family: inherit;
   font-weight: inherit;
   font-style: inherit;
   font-size: 6rem;
   background-color: #222;
   color: #eee;
-  border: 0.5rem solid #eee;
   padding: 1rem 2rem;
   height: 12rem;
   width: 22rem;
