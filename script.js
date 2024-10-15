@@ -30,8 +30,10 @@ guessInputElement.addEventListener('input', function (event) {
 
 checkButton.addEventListener('click', () => {
   const userInput = Number(guessInputElement.value);
-
-  if (
+  if (score === 0) {
+    resultElement.innerHTML = '😞 You lost!';
+    document.body.style.backgroundColor = '#ff0000';
+  } else if (
     userInput >= min &&
     userInput <= max &&
     userInput === myNumber &&
@@ -70,9 +72,6 @@ checkButton.addEventListener('click', () => {
   } else if (guessInputElement.value === '' && score !== 0) {
     resultElement.innerHTML = '⛔ No entry!';
     guessInputElement.focus();
-  } else if (score === 0) {
-    resultElement.innerHTML = '😞 You lost!';
-    document.body.style.backgroundColor = '#ff0000';
   } else {
     resultElement.innerHTML = '⛔ Not in range!';
     guessInputElement.focus();
@@ -89,3 +88,5 @@ againButton.addEventListener('click', () => {
   resultElement.innerHTML = 'Start guessing...';
   scoreElement.innerHTML = '20';
 });
+
+// BUG: When the score meets 0, it doesn't immediately get red.
