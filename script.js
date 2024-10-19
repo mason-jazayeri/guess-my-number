@@ -33,48 +33,36 @@ checkButton.addEventListener('click', () => {
   if (score === 0) {
     resultElement.innerHTML = '😞 You lost!';
     document.body.style.backgroundColor = '#ff0000';
-  } else if (
-    userInput >= min &&
-    userInput <= max &&
-    userInput === myNumber &&
-    score !== 0
-  ) {
-    questionMarkElement.innerHTML = myNumber;
-    resultElement.innerHTML = '🎉 Correct number!';
-    // Changing the style of an element: Method 1 with style property
-    // Changing the style of an element: Method 2 by defining a new class in css and changing the class of the element
-    document.body.style.backgroundColor = '#60b347';
-    if (score > highscore) {
-      highscore = score;
-      highscoreElement.textContent = highscore;
-    }
-  } else if (
-    userInput >= min &&
-    userInput <= max &&
-    userInput < myNumber &&
-    score !== 0
-  ) {
-    resultElement.innerHTML = '📉 Too low!';
-    // Note the difference between --score and score--
-    scoreElement.innerHTML = --score;
-    guessInputElement.focus();
-  } else if (
-    userInput >= min &&
-    userInput <= max &&
-    userInput !== myNumber &&
-    userInput > myNumber &&
-    score !== 0
-  ) {
-    resultElement.innerHTML = '📈 Too high!';
-    scoreElement.innerHTML = --score;
-    // focus() method for focusing on input element
-    guessInputElement.focus();
-  } else if (guessInputElement.value === '' && score !== 0) {
-    resultElement.innerHTML = '⛔ No entry!';
-    guessInputElement.focus();
   } else {
-    resultElement.innerHTML = '⛔ Not in range!';
-    guessInputElement.focus();
+    if (userInput === myNumber) {
+      questionMarkElement.innerHTML = myNumber;
+      resultElement.innerHTML = '🎉 Correct number!';
+      // Changing the style of an element: Method 1 with style property
+      // Changing the style of an element: Method 2 by defining a new class in css and changing the class of the element
+      document.body.style.backgroundColor = '#60b347';
+      if (score > highscore) {
+        highscore = score;
+        highscoreElement.textContent = highscore;
+      }
+    } else {
+      if (userInput >= min && userInput <= max) {
+        userInput < myNumber
+          ? (resultElement.innerHTML = '📉 Too low!')
+          : (resultElement.innerHTML = '📈 Too high!');
+        // Note the difference between --score and score--
+        scoreElement.innerHTML = --score;
+        // focus() method for focusing on input element
+        guessInputElement.focus();
+      } else {
+        if (guessInputElement.value === '') {
+          resultElement.innerHTML = '⛔ No entry!';
+          guessInputElement.focus();
+        } else {
+          resultElement.innerHTML = '⛔ Not in range!';
+          guessInputElement.focus();
+        }
+      }
+    }
   }
 });
 
